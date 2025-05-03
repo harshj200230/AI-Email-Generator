@@ -1,5 +1,5 @@
-# Step 1: Use an OpenJDK 21 base image
-FROM openjdk:21 AS build
+# Step 1: Use OpenJDK 17 base image
+FROM openjdk:17 AS build
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven
@@ -14,7 +14,7 @@ COPY . .
 RUN mvn clean install
 
 # Step 2: Create the final image to run the application
-FROM openjdk:21-jre-slim
+FROM openjdk:17-jre-slim
 
 # Set the working directory inside the container
 WORKDIR /app
